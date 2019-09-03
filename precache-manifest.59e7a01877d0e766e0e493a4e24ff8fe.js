@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bf1fab6e1d9995fb8fce68f5181795be",
+    "revision": "ea133c57c0a5c9616deaf50701d3fc10",
     "url": "/rock-paper-scissors/index.html"
   },
   {
-    "revision": "7ddd3fca4097ad7eaf75",
-    "url": "/rock-paper-scissors/static/css/2.181f3b12.chunk.css"
+    "revision": "060da06009985f5df41b",
+    "url": "/rock-paper-scissors/static/css/2.a9d7bfb5.chunk.css"
   },
   {
-    "revision": "b6b49a8cc375b6677a04",
+    "revision": "fd70338528e1b6b8cc2f",
     "url": "/rock-paper-scissors/static/css/main.f09c3297.chunk.css"
   },
   {
-    "revision": "7ddd3fca4097ad7eaf75",
-    "url": "/rock-paper-scissors/static/js/2.a78cdd93.chunk.js"
+    "revision": "060da06009985f5df41b",
+    "url": "/rock-paper-scissors/static/js/2.517bce63.chunk.js"
   },
   {
-    "revision": "b6b49a8cc375b6677a04",
-    "url": "/rock-paper-scissors/static/js/main.f7f61ee4.chunk.js"
+    "revision": "fd70338528e1b6b8cc2f",
+    "url": "/rock-paper-scissors/static/js/main.1105d01d.chunk.js"
   },
   {
     "revision": "d2f53215bedb4611a28e",
     "url": "/rock-paper-scissors/static/js/runtime~main.75db9d22.js"
+  },
+  {
+    "revision": "0a4714a9663e55b54da5083efa7fd3ab",
+    "url": "/rock-paper-scissors/static/media/bigbangtheory.0a4714a9.png"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
@@ -86,5 +90,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ef60a4f6c25ef7f39f2d25a748dbecfe",
     "url": "/rock-paper-scissors/static/media/outline-icons.ef60a4f6.woff"
+  },
+  {
+    "revision": "2ef2d978c26ab2f7981a2939c69ca336",
+    "url": "/rock-paper-scissors/static/media/vanillaicecream.2ef2d978.jpg"
   }
 ]);
