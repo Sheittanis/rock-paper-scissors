@@ -5,20 +5,10 @@ import data from "./GamemodeData.js"
 import { getNpcRandChoice } from "./util.js"
 
 const RockPaperScissorsSelection = (props) => {
-    const [selection, setSelection] = useState("");
-    collectState = collectState.bind(this);
-
-    function collectState() {
-        return selection;
-    }
-
-    useEffect(() => {
-        props.getSelection(collectState());
-    });
-
+    const {getSelection } = props;
 
     const selected = (i, j) =>{
-        setSelection(i.name)
+        getSelection(i.value)
     }
 
     const options = (
