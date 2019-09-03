@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Icon, Grid } from 'semantic-ui-react'
 
-import data from "./GamemodeData.js"
+import data from "./SelectionData.js"
 import { getNpcRandChoice } from "./util.js"
 
 const RockPaperScissorsSelection = (props) => {
