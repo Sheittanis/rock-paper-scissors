@@ -1,4 +1,5 @@
 {
+  "home": "https://sheittanis.github.io/rock-paper-scissors/",
   "name": "rock-paper-scissors",
   "version": "0.1.0",
   "private": true,
@@ -7,6 +8,7 @@
     "npm": "6.9.0"
   },
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1",
@@ -16,7 +18,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
