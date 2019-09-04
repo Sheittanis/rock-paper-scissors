@@ -20,3 +20,7 @@
 .selection:hover {
   color: #ffd66f !important;
 }
+
+.circular.icon{
+  background: blue;
+}

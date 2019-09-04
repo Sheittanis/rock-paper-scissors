@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Icon, Grid } from 'semantic-ui-react'
 
-import data from "./SelectionData.js"
-import { getNpcRandChoice } from "./util.js"
+import data from "../SelectionData.js"
 
-const RockPaperScissorsSelection = (props) => {
+const NpcOptions = (props) => {
     const {getSelection } = props;
 
     // const selected = (i, j) =>{
@@ -26,4 +25,4 @@ const RockPaperScissorsSelection = (props) => {
     )
 }
 
-export default RockPaperScissorsSelection
+export default NpcOptions
