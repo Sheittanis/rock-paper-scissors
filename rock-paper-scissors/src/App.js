@@ -12,6 +12,7 @@ import VanillaThumb from "./images/vanillaicecream.jpg"
 import data from "./GamemodeData.js"
 
 function App() {
+  const [result, setResult] = useState("");
   const [selection, setSelection] = useState("");
   const [npcSelection, setNpcSelection] = useState("");
   const [playerScore, setPlayerScore] = useState(0);
@@ -20,18 +21,17 @@ function App() {
 
   const getSelection = (value) => {
     setSelection(value);
-    npcTurn();
+    npcTurn(value);
   }
 
-  function npcTurn() {
+  function npcTurn(playerChoice) {
     var npcChoice = getNpcRandChoice(3);
     setNpcSelection(npcChoice);
-    console.log(selection, npcSelection)
-    findWinner(selection, npcSelection)
+    findWinner(playerChoice, npcChoice)
   }
 
   function findWinner(playerChoice, npcChoice) {
-    if (playerChoice === npcChoice) resetGame();
+    if (playerChoice === npcChoice) draw();
     else if (playerChoice === 'rock' && npcChoice === 'paper') npcWin();
     else if (playerChoice === 'rock' && npcChoice === 'scissors') playerWin();
     else if (playerChoice === 'scissors' && npcChoice === 'rock') npcWin();
@@ -40,13 +40,21 @@ function App() {
     else if (playerChoice === 'paper' && npcChoice === 'rock') playerWin();
   }
 
+  
+  function draw() {
+    setResult("WON!");
+    resetGame();
+  }
+
   function playerWin() {
-    setPlayerScore(playerScore + 1)
+    setPlayerScore(playerScore + 1);
+    setResult("WON!");
     resetGame();
   }
 
   function npcWin() {
     setNpcScore(npcScore + 1)
+    setResult("LOST!");
     resetGame();
   }
 
@@ -72,9 +80,12 @@ function App() {
       <Grid style={{ maxWidth: '65vw' }}>
         <Dropdown placeholder='Game mode :) ' fluid selection options={data} onChange={selectedMode} />
 
-        <Grid.Row centered columns={2}>
+        <Grid.Row centered columns={3}>
           <Grid.Column textAlign="left">
             <Header as='h1' color="green">YOU: {playerScore}</Header>
+          </Grid.Column>
+          <Grid.Column textAlign="center">
+            <Header as='h1' color="orange">{result}</Header>
           </Grid.Column>
           <Grid.Column textAlign="right">
             <Header as='h1' color="red">NPC: {npcScore}</Header>
