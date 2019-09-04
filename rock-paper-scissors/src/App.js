@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Grid, Image, Dropdown } from 'semantic-ui-react'
+import { Button, Header, Grid, Image, Dropdown } from 'semantic-ui-react'
 import './App.css';
 
-import RockPaperScissors from "./RockPapersScissors"
+import PlayerOptions from "./PlayerOptions"
+import NpcOptions from "./NpcOptions"
 import { getNpcRandChoice } from "./util.js"
 // import Gamemodes from "./Gamemodes"
 
@@ -22,14 +23,18 @@ function App() {
   }
 
   useEffect(() => {
-    play();
+    npcTurn();
+    // play()
   }, [selection]);
 
   function play() {
     var npcChoice = getNpcRandChoice(3);
     findWinner(selection, npcChoice)
   }
-
+  function npcTurn() {
+    var npcChoice = getNpcRandChoice(3);
+    findWinner(selection, npcChoice)
+  }
   // setTimeout(() => {
   //   // this.setState({ position: 1 });
   //   console.log("?")
@@ -58,7 +63,8 @@ function App() {
   const resetGame = () => {
     setSelection("");
   }
-  const selectedMode = (e, {value}) => {
+
+  const selectedMode = (e, { value }) => {
     e.persist();
     // console.log(e.target.textContent);
     // console.log(value)
@@ -66,19 +72,18 @@ function App() {
     else if (value === 'The Big Bang Theory') setImage(BigBangTheoryThumb)
     else if (value === 'Vanilla') setImage(VanillaThumb)
   };
-  
+
   return (
     <div className="App">
       <Header as='h1' color="yellow">Beat your friends and settle bets</Header>
-      <Image src={modeImage}  style={{ width: '200px', height: '200px' }}></Image>
+      <Image src={modeImage} style={{ width: '200px', height: '200px' }}></Image>
 
       {/* <Image src={FriendsThumb}></Image> */}
-      <Grid style={{maxWidth: '65vw' }}>
-      <Dropdown placeholder='Game mode :) 'fluid selection options={data} onChange={selectedMode}/>
+      <Grid style={{ maxWidth: '65vw' }}>
+        <Dropdown placeholder='Game mode :) ' fluid selection options={data} onChange={selectedMode} />
         {/* <Gamemodes></Gamemodes> */}
 
         <Grid.Row centered columns={2}>
-          {/* <Header as='h1'>Score</Header> */}
           <Grid.Column textAlign="left">
             <Header as='h1' color="green">YOU: {playerScore}</Header>
           </Grid.Column>
@@ -87,7 +92,11 @@ function App() {
           </Grid.Column>
         </Grid.Row>
 
-        <RockPaperScissors getSelection={getSelection}></RockPaperScissors>
+        <PlayerOptions getSelection={getSelection}></PlayerOptions>
+        <NpcOptions getSelection={getSelection}></NpcOptions>
+        <Grid.Row centered>
+          <Button>New round!</Button>
+        </Grid.Row>
       </Grid>
 
     </div>
