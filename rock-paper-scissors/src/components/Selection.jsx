@@ -11,7 +11,7 @@ const Selection = (props) => {
 
     return (
         <Grid.Column key={option.id} className="selection" onClick={(event) => selected(option, event)}>
-            <Icon name={option.name} size="massive" color={color} circular></Icon>
+            <Icon name={option.name} size="huge" color={color} circular></Icon>
             <Header as='h1' color="teal">{option.description} </Header>
         </Grid.Column>
 

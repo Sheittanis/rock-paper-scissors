@@ -1,22 +1,28 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Grid } from 'semantic-ui-react'
 
-// import data from "../SelectionData.js"
-
-import { selectionData } from "../util.js"
+import { vanillaSelections, friendsSelections, bbtSelections } from "../util.js"
 import Selection from "./Selection"
 
 const PlayerOptions = (props) => {
-    const { getSelection } = props;
+    const { getSelection, mode } = props;
+    var selections = [];
+
+    if (mode === "Vanilla") {
+        selections = vanillaSelections
+    }
+    else if (mode === "Friends") {
+        selections = friendsSelections
+    }
 
     const options = (
-        selectionData.map((option) =>
+        selections.map((option) =>
             <Selection option={option} getSelection={getSelection}></Selection>
         )
     );
 
     return (
-        <Grid.Row columns={selectionData.length}>
+        <Grid.Row columns={selections.length}>
             {options}
         </Grid.Row>
     )

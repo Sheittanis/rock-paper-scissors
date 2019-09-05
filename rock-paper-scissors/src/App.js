@@ -3,7 +3,7 @@ import { Button, Header, Grid, Image, Dropdown, Icon } from 'semantic-ui-react'
 import './App.css';
 
 import PlayerOptions from "./components/PlayerOptions.jsx"
-import { getNpcRandChoice } from "./util.js"
+import { getNpcRandChoice, getIce } from "./util.js"
 
 import FriendsThumb from "./images/friends.png"
 import BigBangTheoryThumb from "./images/bigbangtheory.png"
@@ -11,7 +11,7 @@ import VanillaThumb from "./images/vanillaicecream.jpg"
 import data from "./GamemodeData.js"
 
 function App() {
-  const [time, setTime] = useState(1000);
+  const [mode, setMode] = useState("Vanilla");
   const [result, setResult] = useState("");
   const [selection, setSelection] = useState("");
   const [npcSelection, setNpcSelection] = useState("");
@@ -25,9 +25,16 @@ function App() {
   }
 
   function npcTurn(playerChoice) {
-    var npcChoice = getNpcRandChoice(3);
-    setNpcSelection(npcChoice);
-    findWinner(playerChoice.value, npcChoice.value)
+    if(playerChoice.value === "fire") {            
+      var npcChoice = getIce();
+      setNpcSelection(npcChoice);
+      easterEgg(); // easter egg
+    }
+    else{
+      var npcChoice = getNpcRandChoice(3);
+      setNpcSelection(npcChoice);
+      findWinner(playerChoice.value, npcChoice.value)
+    }
   }
 
   function findWinner(playerChoice, npcChoice) {
@@ -38,6 +45,7 @@ function App() {
     else if (playerChoice === 'scissors' && npcChoice === 'paper') playerWin();
     else if (playerChoice === 'paper' && npcChoice === 'scissors') npcWin();
     else if (playerChoice === 'paper' && npcChoice === 'rock') playerWin();
+    
   }
 
   function draw() {
@@ -56,7 +64,11 @@ function App() {
     setResult("LOST!");
     resetRound();
   }
-
+  function easterEgg(){
+    setNpcScore(npcScore + 1)
+    setResult('"Yeah but does it beat water balloon?"');
+    resetRound();
+  }
   const resetRound = () => {
     // setTimeout(() => {
     //   setSelection(" ");
@@ -72,10 +84,16 @@ function App() {
 
   const selectedMode = (e, { value }) => {
     e.persist();
+    setMode(value)
     if (value === 'Friends') setImage(FriendsThumb)
     else if (value === 'The Big Bang Theory') setImage(BigBangTheoryThumb)
     else if (value === 'Vanilla') setImage(VanillaThumb)
   };
+
+  const playerOptions = (
+      <PlayerOptions getSelection={getSelection} mode={mode}></PlayerOptions>
+  )
+    
 
   return (
     <div className="App">
@@ -88,22 +106,22 @@ function App() {
           </Grid.Column>
 
           <Grid.Column width={8}>
-            <Dropdown placeholder='Game mode :) ' selection options={data} onChange={selectedMode} />
+            <Dropdown placeholder='Game mode :)' selection options={data} onChange={selectedMode} />
           </Grid.Column>
         </Grid.Row>
 
-        <Grid.Row columns={3} centered>
+        <Grid.Row columns={3} centered verticalAlign="middle">
           <Grid.Column textAlign="left">
-            <Icon name={selection.name} size="huge" color="green" circular></Icon>
+            <Icon name={selection.name} size="big" color="green" circular></Icon>
             <Header as='h1' color="green">YOU: {playerScore}</Header>
           </Grid.Column>
-          
+
           <Grid.Column textAlign="center">
             <Header as='h1' color="orange">{result}</Header>
           </Grid.Column>
 
           <Grid.Column textAlign="right">
-            <Icon name={npcSelection.name} size="huge" color="red" circular></Icon>
+            <Icon name={npcSelection.name} size="big" color="red" circular></Icon>
             <Header as='h1' color="red">NPC: {npcScore}</Header>
           </Grid.Column>
         </Grid.Row>
@@ -117,7 +135,8 @@ function App() {
           </Grid.Column>
         </Grid.Row>
 
-        <PlayerOptions getSelection={getSelection}></PlayerOptions>
+        {playerOptions}
+        {/* <PlayerOptions getSelection={getSelection}></PlayerOptions> */}
 
         <Grid.Row centered>
           <Button onClick={resetGame} color="red">Reset!</Button>
