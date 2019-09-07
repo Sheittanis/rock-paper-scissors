@@ -14,7 +14,10 @@ const PlayerOptions = (props) => {
     else if (mode === "Friends") {
         selections = friendsSelections
     }
-
+    else if (mode === "The Big Bang Theory") {
+        selections = bbtSelections
+    }
+    
     const options = (
         selections.map((option) =>
             <Selection option={option} getSelection={getSelection}></Selection>

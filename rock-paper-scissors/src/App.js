@@ -3,7 +3,7 @@ import { Button, Header, Grid, Image, Dropdown, Icon } from 'semantic-ui-react'
 import './App.css';
 
 import PlayerOptions from "./components/PlayerOptions.jsx"
-import { getNpcRandChoice, getIce } from "./util.js"
+import { getNpcRandChoice, getBalloon } from "./util.js"
 
 import FriendsThumb from "./images/friends.png"
 import BigBangTheoryThumb from "./images/bigbangtheory.png"
@@ -26,7 +26,7 @@ function App() {
 
   function npcTurn(playerChoice) {
     if(playerChoice.value === "fire") {            
-      var npcChoice = getIce();
+      var npcChoice = getBalloon();
       setNpcSelection(npcChoice);
       easterEgg(); // easter egg
     }
@@ -39,13 +39,17 @@ function App() {
 
   function findWinner(playerChoice, npcChoice) {
     if (playerChoice === npcChoice) draw();
-    else if (playerChoice === 'rock' && npcChoice === 'paper') npcWin();
-    else if (playerChoice === 'rock' && npcChoice === 'scissors') playerWin();
-    else if (playerChoice === 'scissors' && npcChoice === 'rock') npcWin();
-    else if (playerChoice === 'scissors' && npcChoice === 'paper') playerWin();
-    else if (playerChoice === 'paper' && npcChoice === 'scissors') npcWin();
-    else if (playerChoice === 'paper' && npcChoice === 'rock') playerWin();
-    
+    else if (playerChoice === 'rock' && (npcChoice === 'scissors' || npcChoice ==='lizard')) playerWin();
+    else if (playerChoice === 'rock' && (npcChoice === 'paper' || npcChoice ==='spock')) npcWin();   
+    else if (playerChoice === 'paper' && (npcChoice === 'rock' || npcChoice ==='spock')) playerWin();
+    else if (playerChoice === 'paper' && (npcChoice === 'scissors' || npcChoice ==='lizard')) npcWin(); 
+    else if (playerChoice === 'scissors' && (npcChoice === 'paper' || npcChoice ==='lizard')) playerWin();
+    else if (playerChoice === 'scissors' && (npcChoice === 'rock' || npcChoice ==='spock')) npcWin();
+    else if (playerChoice === 'lizard' && (npcChoice === 'spock' || npcChoice ==='paper')) playerWin();
+    else if (playerChoice === 'lizard' && (npcChoice === 'rock' || npcChoice ==='scissors')) npcWin();
+    else if (playerChoice === 'spock' && (npcChoice === 'rock' || npcChoice ==='scissors')) playerWin();
+    else if (playerChoice === 'spock' && (npcChoice === 'paper' || npcChoice ==='lizard')) npcWin();
+    else draw();
   }
 
   function draw() {
@@ -80,10 +84,11 @@ function App() {
   const resetGame = () => {
     setPlayerScore(0);
     setNpcScore(0);
+    setResult(" ");
   }
 
   const selectedMode = (e, { value }) => {
-    e.persist();
+    // e.persist();
     setMode(value)
     if (value === 'Friends') setImage(FriendsThumb)
     else if (value === 'The Big Bang Theory') setImage(BigBangTheoryThumb)
@@ -97,16 +102,17 @@ function App() {
 
   return (
     <div className="App">
-      <Header as='h1' color="yellow">Beat your friends and settle bets</Header>
+      {/* <Header as='h1' color="yellow">Beat your friends and settle bets</Header> */}
+      <Header as='h1' color="yellow">Not your average rock paper scissors.</Header>
 
-      <Grid style={{ maxWidth: '65vw' }}>
-        <Grid.Row columns={2}>
-          <Grid.Column width={8}>
+      <Grid style={{ maxWidth: '65vw', minHeight: '80vh' }}>
+        <Grid.Row columns={2} centered>
+          {/* <Grid.Column width={8}>
             <Image src={modeImage} style={{ width: '200px', height: '200px' }}></Image>
-          </Grid.Column>
+          </Grid.Column> */}
 
-          <Grid.Column width={8}>
-            <Dropdown placeholder='Game mode :)' selection options={data} onChange={selectedMode} />
+          <Grid.Column >
+            <Dropdown placeholder='Vanilla' fluid selection options={data} onChange={selectedMode} />
           </Grid.Column>
         </Grid.Row>
 
