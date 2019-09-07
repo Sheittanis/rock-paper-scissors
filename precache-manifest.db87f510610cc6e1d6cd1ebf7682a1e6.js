@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1b1ff72d5a98d6cc29f2ca338cb517de",
+    "revision": "d46b77cfd09c2c8bdc8a094bb2d6376d",
     "url": "/rock-paper-scissors/index.html"
   },
   {
-    "revision": "d7c0d905d04d3d499a16",
+    "revision": "8c8bf32fe171cbb7cddf",
     "url": "/rock-paper-scissors/static/css/2.181f3b12.chunk.css"
   },
   {
-    "revision": "df46f347545f0504bf7f",
+    "revision": "bc042df192d2bb621772",
     "url": "/rock-paper-scissors/static/css/main.edd230fb.chunk.css"
   },
   {
-    "revision": "d7c0d905d04d3d499a16",
-    "url": "/rock-paper-scissors/static/js/2.9e4116f7.chunk.js"
+    "revision": "8c8bf32fe171cbb7cddf",
+    "url": "/rock-paper-scissors/static/js/2.fff65fbc.chunk.js"
   },
   {
-    "revision": "df46f347545f0504bf7f",
-    "url": "/rock-paper-scissors/static/js/main.6ff8cfa2.chunk.js"
+    "revision": "bc042df192d2bb621772",
+    "url": "/rock-paper-scissors/static/js/main.a229d5da.chunk.js"
   },
   {
     "revision": "d2f53215bedb4611a28e",
