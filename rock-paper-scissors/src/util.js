@@ -1,13 +1,21 @@
-export var getNpcRandChoice = function (type) {
-    // var randNumber = Math.floor((Math.random() * type) + 1);
-    // var choice = getChoice(randNumber);
+export var getNpcRandChoice = function (mode) {
 
-    var item = vanillaSelections[Math.floor(Math.random() * vanillaSelections.length)];
+    if (mode === "Vanilla") {
+        var item = vanillaSelections[Math.floor(Math.random() * vanillaSelections.length)];
+        return item
+    }
+    else if (mode === "Friends") {       
+        var item = friendsSelections[Math.floor(Math.random() * friendsSelections.length)];
+        return item
+    }
+    else if (mode === "The Big Bang Theory") {  
+        var item = bbtSelections[Math.floor(Math.random() * bbtSelections.length)];
+        return item
+    }
 
-    return item
 }
 
-export var getBalloon = function (type) {
+export var getBalloon = function () {
     const item = {
         id: 1,
         name: "point",
@@ -18,14 +26,6 @@ export var getBalloon = function (type) {
 
     return item
 }
-// function getChoice(randNumber){
-
-//     switch(randNumber){
-//         case 1: return 'rock';
-//         case 2: return 'paper';
-//         case 3: return 'scissors';
-//     }
-// }
 
 
 export const vanillaSelections = [
@@ -51,7 +51,6 @@ export const vanillaSelections = [
         selected: false
     }
 ];
-
 
 export const friendsSelections = [
     {
@@ -83,7 +82,6 @@ export const friendsSelections = [
         selected: false
     }
 ];
-
 
 export const bbtSelections = [
     {
