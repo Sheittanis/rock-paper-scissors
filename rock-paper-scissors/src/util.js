@@ -1,15 +1,16 @@
 export var getNpcRandChoice = function (mode) {
-
     if (mode === "Vanilla") {
-        var item = vanillaSelections[Math.floor(Math.random() * vanillaSelections.length)];
+        let item = vanillaSelections[Math.floor(Math.random() * vanillaSelections.length)];
         return item
     }
-    else if (mode === "Friends") {       
-        var item = friendsSelections[Math.floor(Math.random() * friendsSelections.length)];
+    else if (mode === "Friends") {
+        //avoid fire as selection
+        let item = vanillaSelections[Math.floor(Math.random() * vanillaSelections.length)];
+        // var item = friendsSelections[Math.floor(Math.random() * friendsSelections.length)];
         return item
     }
-    else if (mode === "The Big Bang Theory") {  
-        var item = bbtSelections[Math.floor(Math.random() * bbtSelections.length)];
+    else if (mode === "The Big Bang Theory") {
+        let item = bbtSelections[Math.floor(Math.random() * bbtSelections.length)];
         return item
     }
 
@@ -104,7 +105,7 @@ export const bbtSelections = [
         value: "scissors",
         description: "scissors cut paper and decapitate lizard.",
         selected: false
-    },    
+    },
     {
         id: 4,
         name: "hand lizard",
